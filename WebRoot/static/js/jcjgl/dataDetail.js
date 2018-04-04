@@ -1,0 +1,27 @@
+$(function(){
+	if(id){
+		$.ajax({
+			url:"getInfoById",
+			type:"POST",
+			dataType:"json",
+			data:{infoId:id},
+			success:function(data){
+				$('p.jjdbh').text(data.jjdbh);
+				$('p.bpzje').text(data.bpzje);
+				$('p.zafs').text(data.zafsCode);
+				$('p.zasdfl').text(data.zpsdflCode);
+				$('p.zasddl').text(data.zpsddlCode);
+				$('p.zasdxl').text(data.zpsdxlCode);
+				$('p.gjz').text(data.gjz);
+				$('p.bjsj').text(data.bjsj_format);
+				$('p.jjy').text(data.jjy);
+				$('p.bjdh').text(data.bjdh);
+				$('p.bjrxm').text(data.bjrxm);
+				$('p.bjrxb').text(data.bjrxb);
+				$('p.dw').text(data.dw);
+				$('p.afdz').text(data.afdz);
+				$('p.bjnr').text(data.bjnr);
+			}
+		});
+	}
+})

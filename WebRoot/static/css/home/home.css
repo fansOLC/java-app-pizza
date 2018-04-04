@@ -1,0 +1,39 @@
+
+div.container-fluid,div.row,*{
+	margin:0;
+	padding:0;
+}
+#top{
+	/* border:1px solid #eee; */
+	background:#222D32;
+	padding:15px 0;
+}
+#top>div.row>div.center{
+	font-size:20px;
+	text-align:center;
+	color:#fff;
+}
+#top>div.row>div.text-right{
+	color:#fff;
+	font-size:16px;
+}
+.main-sidebar{
+	position: absolute;
+	top: 64px;
+	left: 0;
+	bottom:0;
+	width: 10%;
+	z-index: 810;
+	background-color: #222d32;
+ }
+ #right{
+ 	position: absolute;
+	top: 64px;
+	left: 10%;
+	bottom:0;
+	width: 90%;
+	z-index: 810;
+	background-color: #fff;
+ }
+
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.project.dao.pizza.AddPizzaMapper">
+	<insert id="addPizza" parameterType="Pizza">
+		insert into pizza (type,description,size1,price1,size2,price2) values 
+		(#{type},#{description},#{size1},#{price1},#{size2},#{price2})
+    </insert>
+    
+    <select id="searchPizza" resultType="Pizza">
+    	SELECT * from pizza order by id desc
+    </select>
+    
+    <delete id="deletePizza" parameterType="int">
+    	delete from pizza where id=#{id}
+    </delete>
+</mapper>    

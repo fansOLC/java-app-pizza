@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.project.dao.registerdata.RegisterDataMapper">
+	<insert id="registerData" parameterType="RegisterData">
+		insert into dataregister (jjdbh,bpzje,zafs,zasdfl,zasddl,zasdxl,gjz,bjsj,jjy,bjdh,bjrxm,bjrxb,dw,afdz,bjnr) values 
+		(#{jjdbh},#{bpzje},#{zafs},#{zasdfl},#{zasddl},#{zasdxl},#{gjz},#{bjsj},#{jjy},#{bjdh},#{bjrxm},#{bjrxb},#{dw},#{afdz},#{bjnr})
+    </insert>
+    
+    <select id="searchData" parameterType="RegisterData" resultType="RegisterData">
+    	SELECT f.methodName as zafsCode,d.*,
+    	(SELECT a.zpsdName FROM zpsd a WHERE a.zpsdCode=d.`zasddl`) AS zpsddlCode,
+    	(SELECT a.zpsdName FROM zpsd a WHERE a.zpsdCode=d.`zasdxl`) AS zpsdxlCode,
+    	(SELECT a.zpsdName FROM zpsd a WHERE a.zpsdCode=d.`zasdfl`) AS zpsdflCode,
+    	DATE_FORMAT(d.bjsj,'%Y-%m-%d %H:%i:%S') as bjsj_format
+    	FROM zafs f, dataregister d 
+    	<trim prefix="where" prefixOverrides="and | or">
+    			d.`zafs`=f.`methodCode`
+			<include refid="public"></include>
+		</trim>
+    	order by id desc
+    </select>
+    
+    <select id="getRegisterCount" resultType="int" parameterType="RegisterData">
+    	select count(*) as count from dataregister
+    	<trim prefix="where" prefixOverrides="and | or">
+			<include refid="public"></include>
+		</trim>
+    </select>
+    
+    <select id="getInfoById" resultType="RegisterData" parameterType="int">
+    	SELECT f.methodName AS zafsCode,d.*,
+    	(SELECT a.zpsdName FROM zpsd a WHERE a.zpsdCode=d.`zasddl`) AS zpsddlCode,
+    	(SELECT a.zpsdName FROM zpsd a WHERE a.zpsdCode=d.`zasdxl`) AS zpsdxlCode,
+    	(SELECT a.zpsdName FROM zpsd a WHERE a.zpsdCode=d.`zasdfl`) AS zpsdflCode,
+    	DATE_FORMAT(d.bjsj,'%Y-%m-%d %H:%i:%S') AS bjsj_format
+    	FROM zafs f, dataregister d  WHERE d.id=#{id} AND f.`methodCode`=d.`zafs`
+    </select>
+    
+    <delete id="deleteData" parameterType="int">
+    	delete from dataregister where id=#{id}
+    </delete>
+    
+    <update id="updateData" parameterType="RegisterData">
+    	update dataregister set jjdbh=#{jjdbh},bpzje=#{bpzje},zafs=#{zafs},zasdfl=#{zasdfl},zasddl=#{zasddl},
+    	zasdxl=#{zasdxl},gjz=#{gjz},bjsj=#{bjsj},jjy=#{jjy},bjdh=#{bjdh},bjrxm=#{bjrxm},bjrxb=#{bjrxb},dw=#{dw},
+    	afdz=#{afdz},bjnr=#{bjnr} where id=#{id}
+    </update>
+    
+    <sql id="public">
+    	<if test="jjdbh!=null">
+			   and jjdbh like CONCAT ("%",#{jjdbh},"%")
+			</if>
+			<if test="bjdh!=null">
+				and bjdh like CONCAT ("%",#{bjdh},"%")
+			</if>
+			<if test="bjrxm!=null">
+				and bjrxm like CONCAT ("%",#{bjrxm},"%")
+			</if>
+			<if test="jjy!=null">
+				and jjy like CONCAT ("%",#{jjy},"%")
+			</if>
+    </sql>
+</mapper>  

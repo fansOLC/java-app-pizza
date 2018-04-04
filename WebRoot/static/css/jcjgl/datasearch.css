@@ -1,0 +1,30 @@
+div.container-fluid,div.row,*{
+	margin:0;
+	padding:0;
+}
+.table{
+	margin-bottom:8px;
+}
+.table>tbody>tr>td.info{
+	vertical-align: middle;
+	text-align:right;
+	width:8%;
+	background:#fff;
+}
+.panel{
+	margin-bottom:0;
+}
+#searchForm>table.table>tbody>tr>td{
+	border:none;
+}
+#searchData{
+	table-layout:fixed;
+}
+#searchData>tbody>tr>td:not(:last-child){
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+/* .tooltip-inner{
+	background:#f00;
+} */

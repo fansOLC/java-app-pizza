@@ -1,0 +1,21 @@
+
+#page{
+     position:relative;
+     display:none;
+     padding-top:7px;
+     background: #fff;
+     height: 50px;
+     margin-top: 10px;
+}
+#page .red{
+     color:#5BC0DE;
+}
+body .laypage_btn{
+     border-radius: 3px;
+
+}
+body .laypage_main button{
+     background: #5BC0DE;
+     color: #fff;
+     border:none;
+}
